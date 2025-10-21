@@ -3,6 +3,7 @@ import React from 'react';
 import Button from '../Button';
 
 import styles from './ToastPlayground.module.css';
+import Toast from "../Toast";
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
@@ -14,7 +15,7 @@ function ToastPlayground() {
         setMessage(event.target.value)
     }
 
-    function onToastVariantChange(event) {
+    function onVariantChange(event) {
         setVariant(event.target.value)
     }
 
@@ -24,7 +25,7 @@ function ToastPlayground() {
                 <img alt="Cute toast mascot" src="/toast.png"/>
                 <h1>Toast Playground</h1>
             </header>
-
+            <Toast />
             <div className={styles.controlsWrapper}>
                 <div className={styles.row}>
                     <label
@@ -55,7 +56,7 @@ function ToastPlayground() {
                                         name="variant"
                                         value={option}
                                         checked={option === variant}
-                                        onChange={onToastVariantChange}
+                                        onChange={onVariantChange}
                                     />
                                     {option}
                                 </label>
