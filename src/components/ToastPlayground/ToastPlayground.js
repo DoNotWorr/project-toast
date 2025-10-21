@@ -8,14 +8,14 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
     const [message, setMessage] = React.useState("")
-    const [toastVariant, setToastVariant] = React.useState(VARIANT_OPTIONS[0])
+    const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0])
 
     function onMessageChange(event) {
         setMessage(event.target.value)
     }
 
     function onToastVariantChange(event) {
-        setToastVariant(event.target.value)
+        setVariant(event.target.value)
     }
 
     return (
@@ -45,19 +45,22 @@ function ToastPlayground() {
                     <div
                         className={`${styles.inputWrapper} ${styles.radioWrapper}`}
                     >
-                        {VARIANT_OPTIONS.map(variant =>
-                            <label htmlFor={`variant-${variant}`} key={variant}>
-                                <input
-                                    id={`variant-${variant}`}
-                                    type="radio"
-                                    name="variant"
-                                    value={variant}
-                                    checked={variant === toastVariant}
-                                    onChange={onToastVariantChange}
-                                />
-                                {variant}
-                            </label>
-                        )}
+                        {VARIANT_OPTIONS.map(option => {
+                            const id = `variant-${option}`
+                            return (
+                                <label htmlFor={id} key={option}>
+                                    <input
+                                        id={id}
+                                        type="radio"
+                                        name="variant"
+                                        value={option}
+                                        checked={option === variant}
+                                        onChange={onToastVariantChange}
+                                    />
+                                    {option}
+                                </label>
+                            )
+                        })}
                     </div>
                 </div>
 
