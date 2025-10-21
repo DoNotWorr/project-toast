@@ -3,19 +3,29 @@ import React from 'react';
 import Button from '../Button';
 
 import styles from './ToastPlayground.module.css';
+import Toast from "../Toast";
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
     const [message, setMessage] = React.useState("")
     const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0])
+    const [isToastVisible, setIsToastVisible] = React.useState(false)
 
     function onMessageChange(event) {
         setMessage(event.target.value)
     }
 
-    function onToastVariantChange(event) {
+    function onVariantChange(event) {
         setVariant(event.target.value)
+    }
+
+    function closeToast() {
+        setIsToastVisible(false)
+    }
+
+    function showToast() {
+        setIsToastVisible(true)
     }
 
     return (
@@ -24,7 +34,7 @@ function ToastPlayground() {
                 <img alt="Cute toast mascot" src="/toast.png"/>
                 <h1>Toast Playground</h1>
             </header>
-
+            {isToastVisible && <Toast message={message} variant={variant} handleClose={closeToast}/>}
             <div className={styles.controlsWrapper}>
                 <div className={styles.row}>
                     <label
@@ -55,7 +65,7 @@ function ToastPlayground() {
                                         name="variant"
                                         value={option}
                                         checked={option === variant}
-                                        onChange={onToastVariantChange}
+                                        onChange={onVariantChange}
                                     />
                                     {option}
                                 </label>
@@ -69,7 +79,7 @@ function ToastPlayground() {
                     <div
                         className={`${styles.inputWrapper} ${styles.radioWrapper}`}
                     >
-                        <Button>Pop Toast!</Button>
+                        <Button onClick={showToast}>Pop Toast!</Button>
                     </div>
                 </div>
             </div>
