@@ -28,6 +28,11 @@ function ToastPlayground() {
         setIsToastVisible(true)
     }
 
+    function handleSubmit(event) {
+        event.preventDefault()
+        showToast()
+    }
+
     return (
         <div className={styles.wrapper}>
             <header>
@@ -35,7 +40,7 @@ function ToastPlayground() {
                 <h1>Toast Playground</h1>
             </header>
             {isToastVisible && <Toast message={message} variant={variant} handleClose={closeToast}/>}
-            <div className={styles.controlsWrapper}>
+            <form className={styles.controlsWrapper} onSubmit={handleSubmit}>
                 <div className={styles.row}>
                     <label
                         htmlFor="message"
@@ -79,10 +84,10 @@ function ToastPlayground() {
                     <div
                         className={`${styles.inputWrapper} ${styles.radioWrapper}`}
                     >
-                        <Button onClick={showToast}>Pop Toast!</Button>
+                        <Button type="submit">Pop Toast!</Button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     );
 }
