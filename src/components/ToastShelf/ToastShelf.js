@@ -13,8 +13,8 @@ function ToastShelf() {
             }
         }
 
-        addEventListener("keydown", removeAllOnEscape)
-        return () => removeEventListener("keydown", removeAllOnEscape)
+        window.addEventListener("keydown", removeAllOnEscape)
+        return () => window.removeEventListener("keydown", removeAllOnEscape)
     }, [removeAll])
 
     return (
