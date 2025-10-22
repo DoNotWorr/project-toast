@@ -18,7 +18,7 @@ function ToastShelf() {
     }, [removeAll])
 
     return (
-        <ol className={styles.wrapper}>
+        <ol role="region" aria-live="polite" aria-label="Notification" className={styles.wrapper}>
             {toasts.map(({id, message, variant}) => {
                 const removeCurrentToast = () => removeToast(id)
                 return (
