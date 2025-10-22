@@ -18,7 +18,7 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({message, variant, onClose}) {
+function Toast({variant, onClose, children}) {
   const Icon = ICONS_BY_VARIANT[variant]
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
@@ -27,7 +27,7 @@ function Toast({message, variant, onClose}) {
       </div>
       <p className={styles.content}>
           <VisuallyHidden>{`${variant} -`}</VisuallyHidden>
-          {message}
+          {children}
       </p>
       <button aria-label="Dismiss message" aria-live="off" className={styles.closeButton} onClick={onClose}>
         <X size={24} />

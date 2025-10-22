@@ -23,7 +23,7 @@ function ToastShelf() {
                 const removeCurrentToast = () => removeToast(id)
                 return (
                     <li key={id} className={styles.toastWrapper}>
-                        <Toast id={id} message={message} variant={variant} onClose={removeCurrentToast}/>
+                        <Toast id={id} variant={variant} onClose={removeCurrentToast}>{message}</Toast>
                     </li>
                 )
             })}
