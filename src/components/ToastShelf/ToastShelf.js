@@ -4,7 +4,19 @@ import Toast from "../Toast";
 import {ToastContext} from "../ToastProvider";
 
 function ToastShelf() {
-    const {toasts, removeToast} = React.useContext(ToastContext)
+    const {toasts, removeToast, removeAll} = React.useContext(ToastContext)
+
+    React.useEffect(() => {
+        function removeAllOnEscape(event) {
+            if (event.code === "Escape") {
+                removeAll()
+            }
+        }
+
+        addEventListener("keydown", removeAllOnEscape)
+        return () => removeEventListener("keydown", removeAllOnEscape)
+    }, [removeAll])
+
     return (
         <ol className={styles.wrapper}>
             {toasts.map(({id, message, variant}) => {
