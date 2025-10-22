@@ -11,7 +11,6 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 function ToastPlayground() {
     const [message, setMessage] = React.useState("")
     const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0])
-    const [isToastVisible, setIsToastVisible] = React.useState(false)
 
     const [toasts, setToasts] = React.useState([])
 
@@ -36,10 +35,6 @@ function ToastPlayground() {
         setVariant(event.target.value)
     }
 
-    function closeToast() {
-        setIsToastVisible(false)
-    }
-
     function handleSubmit(event) {
         event.preventDefault()
         addToast(message, variant)
@@ -52,7 +47,6 @@ function ToastPlayground() {
                 <img alt="Cute toast mascot" src="/toast.png"/>
                 <h1>Toast Playground</h1>
             </header>
-            {isToastVisible && <Toast message={message} variant={variant} handleClose={closeToast}/>}
             <ToastShelf toasts={toasts} removeToast={removeToast}/>
             <form className={styles.controlsWrapper} onSubmit={handleSubmit}>
                 <div className={styles.row}>
